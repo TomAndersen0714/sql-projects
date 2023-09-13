@@ -1,0 +1,1 @@
+DESC xqc_dws.xplat_tag_stat_all
