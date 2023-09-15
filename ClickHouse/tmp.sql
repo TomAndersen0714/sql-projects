@@ -1,1 +1,1 @@
-DESC dwd.xdqc_dialog_all
+DESC xqc_dws.snick_stat_all
