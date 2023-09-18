@@ -1,4 +1,5 @@
--- LeetCode 175. Combine Two Tables: https://leetcode.com/problems/combine-two-tables/
+-- LeetCode 175. Combine Two Tables:
+-- https://leetcode.com/problems/combine-two-tables/
 /*
 Create table If Not Exists Person (personId int, firstName varchar(255), lastName varchar(255));
 Create table If Not Exists Address (addressId int, personId int, city varchar(255), state varchar(255));

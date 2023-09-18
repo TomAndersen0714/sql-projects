@@ -1,4 +1,5 @@
--- LeetCode 176 https://leetcode.com/problems/second-highest-salary/
+-- LeetCode 176. Second Highest Salary
+-- https://leetcode.com/problems/second-highest-salary/
 /*
 Create table If Not Exists Employee (id int, salary int);
 Truncate table Employee;
@@ -8,12 +9,7 @@ insert into Employee (id, salary) values ('3', '300');
 */
 
 /**
-  1. Window function
- */
-
-
-/**
-  2. ORDER BY and LIMIT-OFFSET in Scalar Subquery
+  1. ORDER BY and LIMIT-OFFSET in Scalar Subquery
  */
 SELECT (
     SELECT DISTINCT
@@ -24,7 +20,7 @@ SELECT (
 ) AS SecondHighestSalary;
 
 /**
-  3. ORDER BY and LIMIT-OFFSET in subquery
+  2. ORDER BY and LIMIT-OFFSET in subquery
  */
 SELECT
     SecondHighestSalary
@@ -41,7 +37,7 @@ UNION (
 LIMIT 1;
 
 /*
- 4. Using MAX in scalar subquery of where clause
+ 3. Using MAX in scalar subquery of where clause
  */
 SELECT DISTINCT
     MAX(salary) AS SecondHighestSalary
@@ -51,3 +47,18 @@ WHERE salary < (
         MAX(salary) AS maxSalary
     FROM Employee
 );
+
+/**
+  4. Window function
+ */
+SELECT (
+    SELECT
+        salary
+    FROM (
+        SELECT
+            salary, DENSE_RANK() OVER (ORDER BY salary DESC) AS salary_rank
+        FROM Employee
+    ) AS salary_rank_table
+    WHERE salary_rank = 2
+    LIMIT 1
+) AS SecondHighestSalary;
